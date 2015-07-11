@@ -1,4 +1,4 @@
-dn: olcDatabase={1}hdb,cn=config
+dn: olcDatabase={1}mdb,cn=config
 add: olcAccess
 olcAccess: to attrs=userpassword by dn="cn=admin,dc=levya,dc=org" write by dn="cn=identity,dc=levya,dc=org" write by anonymous auth by * none
 olcAccess: to attrs=entry by dn="cn=admin,dc=levya,dc=org" write by dn="cn=identity,dc=levya,dc=org" write by users read by * none

@@ -3,7 +3,7 @@ dn: cn=module,cn=config
 objectClass: olcModuleList
 cn: module
 olcModulepath: /usr/lib/ldap
-olcModuleload: back_hdb.la
+olcModuleload: back_mdb.la
 olcModuleLoad: refint.la
 olcModuleLoad: memberof.la
 olcModuleLoad: unique.la
@@ -11,10 +11,10 @@ olcModuleLoad: unique.la
 ##
 # Database settings
 ##
-dn: olcDatabase=hdb,cn=config
+dn: olcDatabase=mdb,cn=config
 objectClass: olcDatabaseConfig
-objectClass: olcHdbConfig
-olcDatabase: {1}hdb
+objectClass: olcMdbConfig
+olcDatabase: {1}mdb
 olcSuffix: dc=levya,dc=org
 olcDbDirectory: /var/lib/ldap
 olcRootDN: cn=root,dc=levya,dc=org
@@ -35,7 +35,7 @@ olcLogLevel: 32
 ##
 #Overlay
 ##
-dn: olcOverlay={0}memberof,olcDatabase={1}hdb,cn=config
+dn: olcOverlay={0}memberof,olcDatabase={1}mdb,cn=config
 objectClass: olcOverlayConfig
 objectClass: olcMemberOf
 olcOverlay: {0}memberof
@@ -44,7 +44,7 @@ olcMemberOfGroupOC: groupOfNames
 olcMemberOfMemberAD: member
 olcMemberOfMemberOfAD: memberOf
 
-dn: olcOverlay={1}refint,olcDatabase={1}hdb,cn=config
+dn: olcOverlay={1}refint,olcDatabase={1}mdb,cn=config
 objectClass: olcOverlayConfig
 objectClass: olcRefintConfig
 olcOverlay: {1}refint
@@ -52,7 +52,7 @@ olcRefintAttribute: member
 olcRefintAttribute: memberOf
 olcRefintNothing: cn=NULL,ou=user,dc=levya,dc=org
 
-dn: olcOverlay={2}unique,olcDatabase={1}hdb,cn=config
+dn: olcOverlay={2}unique,olcDatabase={1}mdb,cn=config
 objectClass: olcOverlayConfig
 objectClass: olcUniqueConfig
 olcOverlay: {2}unique
