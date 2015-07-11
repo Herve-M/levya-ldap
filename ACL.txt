@@ -1,0 +1,77 @@
+# Protect userpassword attr for being read / modified by anybody.
+to attrs=userpassword
+  by dn="cn=admin,dc=levya,dc=org" write
+  by dn="cn=identity,dc=levya,dc=org" write
+  by anonymous auth
+  by * none
+
+# Protect auth user from search / modify. Only @admin can do it.
+to dn.children="dc=levya,dc=org" filter="(objectClass=organizationalRole)"
+  by dn="cn=admin,dc=levya,dc=org" manage
+  by anonymous auth
+  by * none
+
+to dn.subtree="ou=group,dc=levya,dc=org"
+  by dn="cn=admin,dc=levya,dc=org" manage
+  by dn="cn=identity,dc=levya,dc=org" read
+  by * none
+
+to dn.subtree="ou=access,dc=levya,dc=org"
+  by dn="cn=admin,dc=levya,dc=org" manage
+  by dn="cn=identity,dc=levya,dc=org" read
+  by * none
+
+to dn.subtree="ou=user,dc=levya,dc=org"
+  by dn="cn=admin,dc=levya,dc=org" manage
+  by dn="cn=identity,dc=levya,dc=org" write
+  by dn="cn=authwiki,dc=levya,dc=org" read
+  by dn="cn=authredmine,dc=levya,dc=org" read
+  by dn="cn=authcloud,dc=levya,dc=org" read
+  by dn="cn=authgitlab,dc=levya,dc=org" read
+  by dn="cn=authstatus,dc=levya,dc=org" read
+  by dn="cn=authforum,dc=levya,dc=org" read
+  by dn="cn=authweb,dc=levya,dc=org" read
+  by users auth
+  by * none
+
+to dn="cn=wiki,ou=access,dc=levya,dc=org" attrs=member
+	by dn="cn=authwiki,dc=levya,dc=org" read
+  by dn="cn=identity,dc=levya,dc=org" write
+  by dn="cn=admin,dc=levya,dc=org" manage
+	by * none
+
+to dn="cn=redmine,ou=access,dc=levya,dc=org" attrs=member
+	by dn="cn=authredmine,dc=levya,dc=org" read
+  by dn="cn=identity,dc=levya,dc=org" write
+	by dn="cn=admin,dc=levya,dc=org" manage
+	by * none
+
+to dn="cn=cloud,ou=access,dc=levya,dc=org" attrs=member
+	by dn="cn=authcloud,dc=levya,dc=org" read
+  by dn="cn=identity,dc=levya,dc=org" write
+	by dn="cn=admin,dc=levya,dc=org" manage
+	by * none
+
+to dn="cn=gitlab,ou=access,dc=levya,dc=org" attrs=member
+	by dn="cn=authgitlab,dc=levya,dc=org" read
+  by dn="cn=identity,dc=levya,dc=org" write
+	by dn="cn=admin,dc=levya,dc=org" manage
+	by * none
+
+to dn="cn=status,ou=access,dc=levya,dc=org" attrs=member
+	by dn="cn=authstatus,dc=levya,dc=org" read
+  by dn="cn=identity,dc=levya,dc=org" write
+	by dn="cn=admin,dc=levya,dc=org" manage
+	by * none
+
+to dn="cn=forum,ou=access,dc=levya,dc=org" attrs=member
+	by dn="cn=authforum,dc=levya,dc=org" read
+  by dn="cn=identity,dc=levya,dc=org" write
+	by dn="cn=admin,dc=levya,dc=org" manage
+	by * none
+
+to dn="cn=web,ou=access,dc=levya,dc=org" attrs=member
+	by dn="cn=authweb,dc=levya,dc=org" read
+  by dn="cn=identity,dc=levya,dc=org" write
+	by dn="cn=admin,dc=levya,dc=org" manage
+	by * none

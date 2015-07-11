@@ -13,6 +13,21 @@ This is the SRC folder of the project, for more information see the public Owncl
 .\LICENSE : license file for the project  
 .\CONTRIBUTING.md : How To contribute
 
+##Setup
+
+Replace all [PASSWORD] in ldif files with a generated password :
+```
+slappasswd -h {SSHA} -s apassword
+```
+Then :
+```
+ldapadd -Y EXTERNAL -H ldapi:/// -f createDB.ldif
+ldapadd -x -D cn=root,dc=levya,dc=org -W -f initDB.ldif
+ldapadd -x -D cn=root,dc=levya,dc=org -W -f realData.ldif
+ldapmodify -Y EXTERNAL -H ldapi:/// -f ACL.ldif
+ldapadd -x -D cn=root,dc=levya,dc=org -W -f testData.ldif //For test purpose
+```
+
 ##Licence :
 
 This file is part of Levya Org. project.

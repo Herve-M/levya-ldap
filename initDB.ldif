@@ -1,0 +1,188 @@
+##
+# Top Level
+##
+dn: dc=levya,dc=org
+dc: levya
+description: Levya Organisation
+objectClass: dcObject
+objectClass: organization
+o: Levya, Org.
+
+##
+# Admin user
+##
+# Admin user.
+dn: cn=admin,dc=levya,dc=org
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: admin
+description: LDAP administrator
+userPassword: [PASSWORD]
+
+##
+# Auth User
+##
+# Wiki
+dn: cn=authwiki,dc=levya,dc=org
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: authwiki
+description: Wiki Auth User
+userPassword: [PASSWORD]
+
+# Redmine
+dn: cn=authredmine,dc=levya,dc=org
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: authredmine
+description: Redmine Auth User
+userPassword: [PASSWORD]
+
+# Cloud
+dn: cn=authcloud,dc=levya,dc=org
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: authcloud
+description: Cloud Auth User
+userPassword: [PASSWORD]
+
+# Gitlab
+dn: cn=authgitlab,dc=levya,dc=org
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: authgitlab
+description: Gitlab Auth User
+userPassword: [PASSWORD]
+
+# Status
+dn: cn=authstatus,dc=levya,dc=org
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: authstatus
+description: Status Auth User
+userPassword: [PASSWORD]
+
+# Forum
+dn: cn=authforum,dc=levya,dc=org
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: authforum
+description: Forum Auth User
+userPassword: [PASSWORD]
+
+# Web
+dn: cn=authweb,dc=levya,dc=org
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: authweb
+description: Web Auth User
+userPassword: [PASSWORD]
+
+##
+# Identity User
+##
+dn: cn=identity,dc=levya,dc=org
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: identity
+description: Identity System User
+userPassword: [PASSWORD]
+
+##
+# create FIRST Level groups branch
+##
+dn: ou=user,dc=levya,dc=org
+objectclass: organizationalunit
+ou: user
+description: All registered User
+
+dn: ou=access,dc=levya,dc=org
+objectclass:organizationalunit
+ou: access
+description: Levya Access Groups
+
+dn: ou=group,dc=levya,dc=org
+objectclass:organizationalunit
+ou: group
+description: Levya Group
+
+##
+# create SECOND Level groups
+##
+
+## ACCESS GROUP
+
+dn: cn=wiki,ou=access,dc=levya,dc=org
+objectclass: groupOfNames
+cn: wiki
+description: Wiki Auth Group
+member: cn=NULL,ou=user,dc=levya,dc=org
+
+dn: cn=redmine,ou=access,dc=levya,dc=org
+objectclass: groupOfNames
+cn: redmine
+description: Redmine Auth Group
+member: cn=NULL,ou=user,dc=levya,dc=org
+
+dn: cn=cloud,ou=access,dc=levya,dc=org
+objectclass: groupOfNames
+cn: cloud
+description: Cloud Auth Group
+member: cn=NULL,ou=user,dc=levya,dc=org
+
+dn: cn=gitlab,ou=access,dc=levya,dc=org
+objectclass: groupOfNames
+cn: gitlab
+description: Gitlab Auth Group
+member: cn=NULL,ou=user,dc=levya,dc=org
+
+dn: cn=status,ou=access,dc=levya,dc=org
+objectclass: groupOfNames
+cn: status
+description: Status Auth Group
+member: cn=NULL,ou=user,dc=levya,dc=org
+
+dn: cn=forum,ou=access,dc=levya,dc=org
+objectclass: groupOfNames
+cn: forum
+description: Forum Auth Group
+member: cn=NULL,ou=user,dc=levya,dc=org
+
+dn: cn=web,ou=access,dc=levya,dc=org
+objectclass: groupOfNames
+cn: web
+description: Web Auth Group
+member: cn=NULL,ou=user,dc=levya,dc=org
+
+##GROUP
+
+dn: cn=user,ou=group,dc=levya,dc=org
+objectclass: groupOfNames
+cn: user
+description: All normal USER, no special rights
+member: cn=NULL,ou=user,dc=levya,dc=org
+
+dn: cn=member,ou=group,dc=levya,dc=org
+objectclass: groupOfNames
+cn: member
+description: All member of Association, some rights
+member: cn=NULL,ou=user,dc=levya,dc=org
+
+dn: cn=admin,ou=group,dc=levya,dc=org
+objectclass: groupOfNames
+cn: admin
+description: Webmaster, Big Admin and God.
+member: cn=NULL,ou=user,dc=levya,dc=org
+
+##
+# Null Member for group
+##
+
+dn: cn=NULL,ou=user,dc=levya,dc=org
+objectclass: inetOrgPerson
+cn: NULL
+sn: NULL
+uid: NULL
+userpassword: [PASSWORD]
+mail: null@levya.org
+description: null account used for adding group without to break integrity

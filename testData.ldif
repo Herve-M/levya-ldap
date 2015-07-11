@@ -1,0 +1,128 @@
+##
+# Add Test Users
+##
+dn: cn=test1,ou=user,dc=levya,dc=org
+objectclass: inetOrgPerson
+cn: test1
+sn: test1
+uid: test1
+userpassword: test1
+mail: test1@levya.org
+description: access to wiki:redmine:cloud:gitlab:status:forum
+
+dn: cn=test2,ou=user,dc=levya,dc=org
+objectclass: inetOrgPerson
+cn: test2
+sn: test2
+uid: test2
+userpassword: test2
+mail: test2@levya.org
+description: access to wiki:redmine:cloud:gitlab:status
+
+dn: cn=test3,ou=user,dc=levya,dc=org
+objectclass: inetOrgPerson
+cn: test3
+sn: test3
+uid: test3
+userpassword: test3
+mail: test3@levya.org
+description: access to wiki:redmine:cloud:gitlab
+
+dn: cn=test4,ou=user,dc=levya,dc=org
+objectclass: inetOrgPerson
+cn: test4
+sn: test4
+uid: test4
+userpassword: test4
+mail: test4@levya.org
+description: access to wiki:redmine:cloud
+
+dn: cn=test5,ou=user,dc=levya,dc=org
+objectclass: inetOrgPerson
+cn: test5
+sn: test5
+uid: test5
+userpassword: test5
+mail: test5@levya.org
+description: access to wiki:redmine
+
+dn: cn=test6,ou=user,dc=levya,dc=org
+objectclass: inetOrgPerson
+cn: test6
+sn: test6
+uid: test6
+userpassword: test6
+mail: test6@levya.org
+description: access to wiki
+
+dn: cn=test7,ou=user,dc=levya,dc=org
+objectclass: inetOrgPerson
+cn: test7
+sn: test7
+uid: test7
+userpassword: test7
+mail: test7@levya.org
+description: access to nothing
+
+##
+# Add Users to Group
+##
+dn: cn=wiki,ou=access,dc=levya,dc=org
+changetype: modify
+add: member
+member: cn=test1,ou=user,dc=levya,dc=org
+member: cn=test2,ou=user,dc=levya,dc=org
+member: cn=test3,ou=user,dc=levya,dc=org
+member: cn=test4,ou=user,dc=levya,dc=org
+member: cn=test5,ou=user,dc=levya,dc=org
+member: cn=test6,ou=user,dc=levya,dc=org
+
+dn: cn=redmine,ou=access,dc=levya,dc=org
+changetype: modify
+add: member
+member: cn=test1,ou=user,dc=levya,dc=org
+member: cn=test2,ou=user,dc=levya,dc=org
+member: cn=test3,ou=user,dc=levya,dc=org
+member: cn=test4,ou=user,dc=levya,dc=org
+member: cn=test5,ou=user,dc=levya,dc=org
+
+dn: cn=cloud,ou=access,dc=levya,dc=org
+changetype: modify
+add: member
+member: cn=test1,ou=user,dc=levya,dc=org
+member: cn=test2,ou=user,dc=levya,dc=org
+member: cn=test3,ou=user,dc=levya,dc=org
+member: cn=test4,ou=user,dc=levya,dc=org
+
+dn: cn=gitlab,ou=access,dc=levya,dc=org
+changetype: modify
+add: member
+member: cn=test1,ou=user,dc=levya,dc=org
+member: cn=test2,ou=user,dc=levya,dc=org
+member: cn=test3,ou=user,dc=levya,dc=org
+
+dn: cn=status,ou=access,dc=levya,dc=org
+changetype: modify
+add: member
+member: cn=test1,ou=user,dc=levya,dc=org
+member: cn=test2,ou=user,dc=levya,dc=org
+
+dn: cn=forum,ou=access,dc=levya,dc=org
+changetype: modify
+add: member
+member: cn=test1,ou=user,dc=levya,dc=org
+
+dn: cn=user,ou=group,dc=levya,dc=org
+changetype: modify
+add: member
+member: cn=test7,ou=user,dc=levya,dc=org
+
+dn: cn=member,ou=group,dc=levya,dc=org
+changetype: modify
+add: member
+member: cn=test1,ou=user,dc=levya,dc=org
+member: cn=test2,ou=user,dc=levya,dc=org
+member: cn=test3,ou=user,dc=levya,dc=org
+member: cn=test4,ou=user,dc=levya,dc=org
+member: cn=test5,ou=user,dc=levya,dc=org
+member: cn=test6,ou=user,dc=levya,dc=org

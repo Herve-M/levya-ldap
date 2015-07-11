@@ -1,0 +1,61 @@
+# Load dynamic backend modules
+dn: cn=module,cn=config
+objectClass: olcModuleList
+cn: module
+olcModulepath: /usr/lib/ldap
+olcModuleload: back_hdb.la
+olcModuleLoad: refint.la
+olcModuleLoad: memberof.la
+olcModuleLoad: unique.la
+
+##
+# Database settings
+##
+dn: olcDatabase=hdb,cn=config
+objectClass: olcDatabaseConfig
+objectClass: olcHdbConfig
+olcDatabase: {1}hdb
+olcSuffix: dc=levya,dc=org
+olcDbDirectory: /var/lib/ldap
+olcRootDN: cn=root,dc=levya,dc=org
+olcRootPW: [PASSWORD]
+olcDbIndex: objectClass eq
+olcDbIndex: default eq,sub
+olcDbIndex: memberOf eq
+olcDbIndex: cn,gn,mail,uid eq,sub
+
+##
+# Config settings : LogLevel
+##
+dn: cn=config
+changetype: modify
+replace: olcLogLevel
+olcLogLevel: 32
+
+##
+#Overlay
+##
+dn: olcOverlay={0}memberof,olcDatabase={1}hdb,cn=config
+objectClass: olcOverlayConfig
+objectClass: olcMemberOf
+olcOverlay: {0}memberof
+olcMemberOfRefInt: TRUE
+olcMemberOfGroupOC: groupOfNames
+olcMemberOfMemberAD: member
+olcMemberOfMemberOfAD: memberOf
+
+dn: olcOverlay={1}refint,olcDatabase={1}hdb,cn=config
+objectClass: olcOverlayConfig
+objectClass: olcRefintConfig
+olcOverlay: {1}refint
+olcRefintAttribute: member
+olcRefintAttribute: memberOf
+olcRefintNothing: cn=NULL,ou=user,dc=levya,dc=org
+
+dn: olcOverlay={2}unique,olcDatabase={1}hdb,cn=config
+objectClass: olcOverlayConfig
+objectClass: olcUniqueConfig
+olcOverlay: {2}unique
+olcUniqueBase: ou=user,dc=levya,dc=org
+olcUniqueAttribute: uid
+olcUniqueAttribute: mail
