@@ -78,6 +78,14 @@ cn: authweb
 description: Web Auth User
 userPassword: [PASSWORD]
 
+# kanboard
+dn: cn=authkanboard,dc=levya,dc=org
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: authweb
+description: Kanboard Auth User
+userPassword: [PASSWORD]
+
 ##
 # Identity User
 ##
@@ -152,6 +160,12 @@ dn: cn=web,ou=access,dc=levya,dc=org
 objectclass: groupOfNames
 cn: web
 description: Web Auth Group
+member: cn=NULL,ou=user,dc=levya,dc=org
+
+dn: cn=kanboard,ou=access,dc=levya,dc=org
+objectclass: groupOfNames
+cn: web
+description: Kanboard Auth Group
 member: cn=NULL,ou=user,dc=levya,dc=org
 
 ##GROUP

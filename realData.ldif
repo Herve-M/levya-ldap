@@ -44,6 +44,11 @@ changetype: modify
 add: member
 member: cn=hostmaster,ou=user,dc=levya,dc=org
 
+dn: cn=kanboard,ou=access,dc=levya,dc=org
+changetype: modify
+add: member
+member: cn=hostmaster,ou=user,dc=levya,dc=org
+
 dn: cn=admin,ou=group,dc=levya,dc=org
 changetype: modify
 add: member
