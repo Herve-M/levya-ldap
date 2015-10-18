@@ -75,3 +75,9 @@ to dn="cn=web,ou=access,dc=levya,dc=org" attrs=member
   by dn="cn=identity,dc=levya,dc=org" write
 	by dn="cn=admin,dc=levya,dc=org" manage
 	by * none
+
+to dn="cn=kanboard,ou=access,dc=levya,dc=org" attrs=member
+  by dn="cn=authkanboard,dc=levya,dc=org" read
+  by dn="cn=identity,dc=levya,dc=org" write
+  by dn="cn=admin,dc=levya,dc=org" manage
+  by * none
